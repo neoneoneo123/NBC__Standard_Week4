@@ -1,4 +1,4 @@
-package com.example.nbc__standardtaskweek4
+package com.example.nbc__standardtaskweek4.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.nbc__standardtaskweek4.R
+import com.example.nbc__standardtaskweek4.data.Card
+import com.example.nbc__standardtaskweek4.data.DataSource
 import com.example.nbc__standardtaskweek4.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

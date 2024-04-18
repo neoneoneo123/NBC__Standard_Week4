@@ -1,22 +1,19 @@
-package com.example.nbc__standardtaskweek4
+package com.example.nbc__standardtaskweek4.presentation
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nbc__standardtaskweek4.databinding.ItemType1Binding
-import com.example.nbc__standardtaskweek4.databinding.ItemType2Binding
-import com.example.nbc__standardtaskweek4.databinding.ItemType3Binding
+import com.example.nbc__standardtaskweek4.data.Card
+import com.example.nbc__standardtaskweek4.databinding.ItemBlueBinding
+import com.example.nbc__standardtaskweek4.databinding.ItemOrangeBinding
+import com.example.nbc__standardtaskweek4.databinding.ItemSkyBinding
 import java.lang.IllegalArgumentException
 import java.text.DecimalFormat
 
 class CardAdapter(private val cards: List<Card>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var itemClick: ItemClick? = null
-    private val ITEM_TYPE_ONE = 1
-    private val ITEM_TYPE_TWO = 2
-    private val ITEM_TYPE_THREE = 3
     private val format = DecimalFormat("$#,##0.00")
 
     interface ItemClick {
@@ -25,22 +22,22 @@ class CardAdapter(private val cards: List<Card>) : RecyclerView.Adapter<Recycler
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ITEM_TYPE_ONE -> {
+            MultiViewEnum.BLUE.viewType -> {
                 val binding =
-                    ItemType1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
-                TypeOneViewHolder(binding)
+                    ItemBlueBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                BlueViewHolder(binding)
             }
 
-            ITEM_TYPE_TWO -> {
+            MultiViewEnum.SKY.viewType -> {
                 val binding =
-                    ItemType2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
-                TypeTwoViewHolder(binding)
+                    ItemSkyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                SkyViewHolder(binding)
             }
 
-            ITEM_TYPE_THREE -> {
+            MultiViewEnum.ORANGE.viewType -> {
                 val binding =
-                    ItemType3Binding.inflate(LayoutInflater.from(parent.context), parent, false)
-                TypeThreeViewHolder(binding)
+                    ItemOrangeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                OrangeViewHolder(binding)
             }
 
             else -> throw IllegalArgumentException("Invalid view type")
@@ -51,9 +48,9 @@ class CardAdapter(private val cards: List<Card>) : RecyclerView.Adapter<Recycler
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
-            0 -> ITEM_TYPE_ONE
-            1 -> ITEM_TYPE_TWO
-            2 -> ITEM_TYPE_THREE
+            0 -> MultiViewEnum.BLUE.viewType
+            1 -> MultiViewEnum.SKY.viewType
+            2 -> MultiViewEnum.ORANGE.viewType
             else -> throw IllegalArgumentException("Invalid position")
         }
     }
@@ -61,27 +58,27 @@ class CardAdapter(private val cards: List<Card>) : RecyclerView.Adapter<Recycler
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val currentItem = cards[position]
         when (holder.itemViewType) {
-            ITEM_TYPE_ONE -> {
-                val typeOneHolder = holder as TypeOneViewHolder
-                typeOneHolder.bind(currentItem)
+            MultiViewEnum.BLUE.viewType -> {
+                val blueHolder = holder as BlueViewHolder
+                blueHolder.bind(currentItem)
 
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it, position)
                 }
             }
 
-            ITEM_TYPE_TWO -> {
-                val typeTwoHolder = holder as TypeTwoViewHolder
-                typeTwoHolder.bind(currentItem)
+            MultiViewEnum.SKY.viewType -> {
+                val skyHolder = holder as SkyViewHolder
+                skyHolder.bind(currentItem)
 
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it, position)
                 }
             }
 
-            ITEM_TYPE_THREE -> {
-                val typeThreeViewHolder = holder as TypeThreeViewHolder
-                typeThreeViewHolder.bind(currentItem)
+            MultiViewEnum.ORANGE.viewType -> {
+                val orangeViewHolder = holder as OrangeViewHolder
+                orangeViewHolder.bind(currentItem)
 
                 holder.itemView.setOnClickListener {
                     itemClick?.onClick(it, position)
@@ -90,7 +87,7 @@ class CardAdapter(private val cards: List<Card>) : RecyclerView.Adapter<Recycler
         }
     }
 
-    inner class TypeOneViewHolder(private val binding: ItemType1Binding) : RecyclerView.ViewHolder(binding.root) {
+    inner class BlueViewHolder(private val binding: ItemBlueBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(card: Card) {
             binding.apply {
                 tvUserName.text = card.userMame
@@ -103,7 +100,7 @@ class CardAdapter(private val cards: List<Card>) : RecyclerView.Adapter<Recycler
         }
     }
 
-    inner class TypeTwoViewHolder(private val binding: ItemType2Binding) :
+    inner class SkyViewHolder(private val binding: ItemSkyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(card: Card) {
             binding.apply {
@@ -117,7 +114,7 @@ class CardAdapter(private val cards: List<Card>) : RecyclerView.Adapter<Recycler
         }
     }
 
-    inner class TypeThreeViewHolder(private val binding: ItemType3Binding) :
+    inner class OrangeViewHolder(private val binding: ItemOrangeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(card: Card) {
             binding.apply {

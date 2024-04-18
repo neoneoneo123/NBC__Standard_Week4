@@ -1,12 +1,13 @@
-package com.example.nbc__standardtaskweek4
+package com.example.nbc__standardtaskweek4.presentation
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.nbc__standardtaskweek4.R
+import com.example.nbc__standardtaskweek4.data.Card
 import com.example.nbc__standardtaskweek4.databinding.ActivityDetailBinding
-import com.example.nbc__standardtaskweek4.databinding.ActivityMainBinding
 import java.text.DecimalFormat
 
 class DetailActivity : AppCompatActivity() {

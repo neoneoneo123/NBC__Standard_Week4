@@ -1,4 +1,4 @@
-package com.example.nbc__standardtaskweek4
+package com.example.nbc__standardtaskweek4.data
 
 fun cardList() : List<Card> {
     return listOf(

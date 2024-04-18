@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.MainActivity">
 
 
     <FrameLayout
@@ -114,5 +114,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        tools:listitem="@layout/item_type1" />
+        tools:listitem="@layout/item_blue" />
 </androidx.constraintlayout.widget.ConstraintLayout>
