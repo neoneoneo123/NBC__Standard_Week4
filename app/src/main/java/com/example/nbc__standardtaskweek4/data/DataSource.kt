@@ -1,12 +1,8 @@
 package com.example.nbc__standardtaskweek4.data
 
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.internal.synchronized
-
 class DataSource {
     companion object {
         private var INSTANCE: DataSource? = null
-        @OptIn(InternalCoroutinesApi::class)
         fun getDataSource(): DataSource {
             return synchronized(DataSource::class) {
                 val newInstance = INSTANCE ?: DataSource()
@@ -18,5 +14,11 @@ class DataSource {
 
     fun getCardList() : List<Card> {
         return cardList()
+    }
+
+    fun getCardForName(name: String) : Card {
+        cardList().let { cards ->
+            return cards.first { it.userMame == name }
+        }
     }
 }
